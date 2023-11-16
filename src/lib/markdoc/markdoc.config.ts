@@ -4,36 +4,34 @@ import type { Config } from "@markdoc/markdoc";
 const { nodes, Tag } = Markdoc;
 
 /*
-  Markdoc is a great tool to author content in Markdown.
-  It supports all default markdown syntax and allows you 
-  to configure and use custom syntax to render your own
-  components. 
+  Markdoc是一个用Markdown编写内容的好工具。
+  它支持所有默认的markdown语法，并允许你配置和使用自定义语法来渲染你自己的组件。
 
-  This is how it works —
-  1. It takes a config (this file)
-  2. It parses the content (markdown)
-  3. It generates a tree-like data structure of content
-  4. We render the tree in Astro pages using astro-markdoc-renderer package
+  Markdoc的工作原理是这样的：
+  1. 它接受一个配置（这个文件）
+  2. 它解析内容（markdown）
+  3. 它生成一个树状的内容数据结构
+  4. 我们在Astro页面中使用astro-markdoc-renderer包渲染树
 */
 
 /* 
-  Markdoc config goes here. 
+  Markdoc配置在这里。
   https://markdoc.dev/docs/config 
-  
-  - If you want to support a custom element, just 
-    add it config.tags (Eg. youtube). Once added here,
-    you can use the custom component syntax in markdown files.
-    Once added here, you can add an Astro component for it in
-    `Renderer.astro` file. Check `YouTubeEmbed` for an example.
 
-  - By default, the default markdown tags are automatically rendered
-    in default html elements. Eg. # is rendered in <h1>, and paragraphs
-    are rendered in <p>. If you want to customize how default markdown 
-    elements are rendered, add a config for the element to `config.nodes`.
-    This is not easy but we have already done it for headings so
-    you can copy paste the code from nodes.heading into whichever tag you
-    want to customize (Eg. paragraph). Once added here, add an Astro component
-    for it in `Renderer.astro` file. Check `heading` for an example.
+  - 如果你想支持一个自定义元素，只需
+    将其添加到config.tags（例如，youtube）。一旦在这里添加，
+    你就可以在markdown文件中使用自定义组件语法。
+    一旦在这里添加，你可以在
+    `Renderer.astro`文件中为它添加一个Astro组件。查看`YouTubeEmbed`作为示例。
+
+  - 默认情况下，默认的markdown标签会自动渲染
+    在默认的html元素中。例如，#会被渲染在<h1>中，段落
+    会被渲染在<p>中。如果你想自定义如何渲染默认的markdown
+    元素，将元素的配置添加到`config.nodes`。
+    这并不容易，但我们已经为标题做了这个
+    你可以从nodes.heading中复制粘贴代码到你想要
+    自定义的标签（例如，段落）。一旦在这里添加，添加一个Astro组件
+    为它在`Renderer.astro`文件中。查看`heading`作为示例。
 */
 export const config: Config = {
   tags: {
@@ -111,9 +109,9 @@ export const config: Config = {
         return new Tag(this.render, { ...attributes }, children);
       },
     },
-    // if you want to customise default tags, this is where you'd do it
-    // after adding the code here, add an Astro component for this node
-    // in Renderer.astro component
+    // 如果你想自定义默认标签，这就是你要做的地方
+    // 在这里添加代码后，为这个节点添加一个Astro组件
+    // 在Renderer.astro组件中
     // paragraph: {
     //   render: "paragraph",
     //   transform(node, config) {

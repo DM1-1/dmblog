@@ -15,13 +15,9 @@ const baseSchema = z.object({
 });
 
 /*
-  Blog posts could be of two types —
-  1. The posts you write in markdown files in content/blog/*.md
-  2. External posts in other websites
-
-  That's why the frontmatter schema for blog posts is one of the two possible types.
-  If you don't want to link posts written in external websites, you could
-  simplify this to just use the markdown schema.
+  博客文章可以有两种类型
+  1. content/blog/*.md 中的 markdown 文件中的文章
+  2. 外链
 */
 export const blog = z.discriminatedUnion("external", [
   // markdown
