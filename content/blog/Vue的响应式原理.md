@@ -1,6 +1,6 @@
 ---
 external: false
-title: "Vue封装组件"
+title: "Vue的响应式原理"
 description: This is a sharing about Vue encapsulated components.
 date: 2023-11-20
 ---

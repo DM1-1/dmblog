@@ -24,7 +24,7 @@ date: 2023-11-20
 ## 组件的封装
 
 从我们常用的组件库的文档中可以知道，组件具有：属性、插槽、事件、方法四个特点
-接下来介绍一下在**Vue3（v3.3以上）**中对这些特点的最佳实践
+接下来介绍一下在 **Vue3（v3.3以上）** 中对这些特点的最佳实践
 
 ### 属性
 
@@ -32,7 +32,7 @@ date: 2023-11-20
 
 最佳实践：比起费劲地定义`props`，我们可以利用 Vue 中的属性透传`$attrs`
 
-```vue
+```ts
 <my-input :size="inputSize" :clearable="clearable" />
 
 <!--子组件-->
@@ -62,7 +62,7 @@ const filteredAttrs = computed(() => {
 
 最佳实践：同样通过透传，在第三方组件中传参`v-bind="$attrs"`，不需要向上抛出事件和方法，父组件就可以直接调用和注册组件内置的事件和方法
 
-```vue
+```ts
 <!--子组件-->
 <template>
   <div class="my-dialog">
@@ -125,7 +125,7 @@ Vue 的官方文档中说到：所有的props都遵循了**单向绑定**原则�
 
 比如这样封装一个组件，就会导致子组件直接更改了父组件的数据，违背了单项数据流原则
 
-```vue
+```ts
 <!-- 父组件 -->
 <my-input v-model="msg"></my-input>
 
@@ -146,7 +146,7 @@ const props = defineProps({
 解决：
 `将v-model拆分成传递值和传递事件，通过事件让父组件来修改`
 
-```vue
+```ts
 <!-- 父组件 -->
 <template>
   <my-input v-model="msg"></my-input>
@@ -183,7 +183,7 @@ const handleValueChange = (value) => {
 
 `通过使用Vue中计算属性的语法糖set，get来完成`
 
-```vue
+```ts
 <!-- 父组件 -->
 <template>
   <my-input v-model="msg"></my-input>
@@ -221,7 +221,7 @@ const inputVal = computed(() => {
 
 2. 同时绑定一个对象中的多个v-model
 
-```vue
+```ts
 <!-- 父组件 -->
 <template>
   <my-input v-model="formList"></my-input>
@@ -272,8 +272,8 @@ get方法会返回一个新的Proxy对象，代理的目标就是`props[propsNam
 
 set方法用于设置prop的值，他直接触发更新事件，并更新值。
 
-```Vue
-<script>
+```ts
+<script setup lang="ts">
 const modelList = computed(() => {
   get() {
 -   return props.modelValue 
